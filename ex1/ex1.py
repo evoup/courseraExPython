@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
+import matplotlib
+
 from warmUpExercise import warmUpExercise
 import numpy as np
 import scipy.io
 import os
+import seaborn as sns
+
 # Machine Learning Online Class - Exercise 1: Linear Regression
 
 #  Instructions
@@ -28,7 +32,7 @@ import os
 # y refers to the profit in $10,000s
 #
 #
-#% Initialization
+# % Initialization
 # ==================== Part 1: Basic Function ====================
 # Complete warmUpExercise.m
 print('Running warmUpExercise ... \n')
@@ -36,30 +40,27 @@ print('5x5 Identity Matrix: \n')
 
 warmUpExercise()
 
-#raw_input('Program paused. Press enter to continue.\n')
+# raw_input('Program paused. Press enter to continue.\n')
 
 
 # ======================= Part 2: Plotting =======================
 print('Plotting Data ...\n')
 arr = np.loadtxt(os.getcwd() + '/ex1data1.txt', delimiter=',', usecols=(0, 1), unpack=True)
 
-#feature x vector
+# feature x vector
 X = arr[0]
 
-#result y vector
+# result y vector
 y = arr[1]
 
-#sample number
+# sample number totoal is :97
 m = len(y)
 
 print('number of samples:%s' % m)
 
+# X = [6.1101, 5.5277,...]
+# y = [17.592, 9.1302,...]
 
+matplotlib.pyplot.scatter(X, y)
 
-print('test')
-
-
-
-
-
-
+matplotlib.pyplot.show()
