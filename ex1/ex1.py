@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 from warmUpExercise import warmUpExercise
+import numpy as np
+import scipy.io
+import os
 # Machine Learning Online Class - Exercise 1: Linear Regression
 
 #  Instructions
@@ -32,4 +35,31 @@ print('Running warmUpExercise ... \n')
 print('5x5 Identity Matrix: \n')
 
 warmUpExercise()
+
+#raw_input('Program paused. Press enter to continue.\n')
+
+
+# ======================= Part 2: Plotting =======================
+print('Plotting Data ...\n')
+arr = np.loadtxt(os.getcwd() + '/ex1data1.txt', delimiter=',', usecols=(0, 1), unpack=True)
+
+#feature x vector
+X = arr[0]
+
+#result y vector
+y = arr[1]
+
+#sample number
+m = len(y)
+
+print('number of samples:%s' % m)
+
+
+
+print('test')
+
+
+
+
+
 
