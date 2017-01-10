@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from warmUpExercise import warmUpExercise
 # Machine Learning Online Class - Exercise 1: Linear Regression
 
 #  Instructions
@@ -29,4 +30,6 @@
 # Complete warmUpExercise.m
 print('Running warmUpExercise ... \n')
 print('5x5 Identity Matrix: \n')
-#warmUpExercise()
+
+warmUpExercise()
+
