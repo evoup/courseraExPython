@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 import matplotlib
+import matplotlib.pyplot
 
 from warmUpExercise import warmUpExercise
 import numpy as np
-import scipy.io
+# import scipy.io
 import os
-import seaborn as sns
+
 
 # Machine Learning Online Class - Exercise 1: Linear Regression
 
@@ -64,3 +65,12 @@ print('number of samples:%s' % m)
 matplotlib.pyplot.scatter(X, y)
 
 matplotlib.pyplot.show()
+
+
+#raw_input('Program paused. Press enter to continue.\n');
+#%% =================== Part 3: Gradient descent ===================
+
+
+
+
+
