@@ -21,6 +21,6 @@ def gradientDescent(X, y, theta, alpha, num_iters):
         #updates = X' * (predictions - y);
         updates = np.dot(np.transpose(X), (predictions-y))
 
-        theta = theta - alpha * (1 / m) * updates
+        theta = theta - alpha * (float(1) / m) * updates
 
-        print num_iter
+        print theta
