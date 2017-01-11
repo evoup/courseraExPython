@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
+
 import matplotlib
 import matplotlib.pyplot
+import numpy as np
 
 from warmUpExercise import warmUpExercise
-import numpy as np
+
 # import scipy.io
 import os
 
@@ -66,6 +68,15 @@ matplotlib.pyplot.scatter(X, y)
 
 matplotlib.pyplot.show()
 
+# convert to column vec
+X.shape = (97, 1)
+
+#insert one col before it
+#np.insert param(original_matrix, offset, insert_value, insert_column_num)
+X = np.insert(X, 0, 1, axis=1)
+
+
+print "done"
 
 #raw_input('Program paused. Press enter to continue.\n');
 #%% =================== Part 3: Gradient descent ===================
