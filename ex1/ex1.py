@@ -4,8 +4,9 @@ import matplotlib
 import matplotlib.pyplot
 import numpy as np
 
-from computeCost import computeCost
 from warmUpExercise import warmUpExercise
+from computeCost import computeCost
+from gradientDescent import gradientDescent
 
 # import scipy.io
 import os
@@ -101,6 +102,10 @@ alpha = 0.01
 #% compute and display initial cost
 #computeCost(X, y, theta)
 J = computeCost(X, y, theta)
+
+#% run gradient descent
+#theta = gradientDescent(X, y, theta, alpha, iterations);
+gradientDescent(X, y, theta, alpha, iterations)
 
 print "done"
 
