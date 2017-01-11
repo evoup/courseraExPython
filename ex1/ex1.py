@@ -4,6 +4,7 @@ import matplotlib
 import matplotlib.pyplot
 import numpy as np
 
+from computeCost import computeCost
 from warmUpExercise import warmUpExercise
 
 # import scipy.io
@@ -93,6 +94,13 @@ theta = np.array([[0],[0]]) # theta is column vec
 print "theta:"
 print theta
 
+#% Some gradient descent settings
+iterations = 1500
+alpha = 0.01
+
+#% compute and display initial cost
+#computeCost(X, y, theta)
+J = computeCost(X, y, theta)
 
 print "done"
 
