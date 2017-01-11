@@ -85,7 +85,9 @@ print X
 ##theta = zeros(2, 1); % initialize fitting parameters
 # theta = np.array([0,0])
 # theta.shape =(2, 1)
-theta = np.array([[0], [0]])  # theta is column vec
+# or
+# theta = np.array([[0], [0]])  # theta is column vec
+theta = np.zeros((2, 1))
 
 print "theta:"
 print theta
