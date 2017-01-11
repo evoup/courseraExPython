@@ -7,7 +7,6 @@ def gradientDescent(X, y, theta, alpha, iterations):
 
     # % Initialize some useful values
     # m = length(y); % number of training examples
-    m = len(y) #% number of training examples
+    m = len(y)  # % number of training examples
 
     print ""
-

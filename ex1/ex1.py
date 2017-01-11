@@ -11,7 +11,6 @@ from gradientDescent import gradientDescent
 # import scipy.io
 import os
 
-
 ## Machine Learning Online Class - Exercise 1: Linear Regression
 
 ##  Instructions
@@ -70,48 +69,37 @@ matplotlib.pyplot.scatter(X, y)
 
 matplotlib.pyplot.show()
 
-
-
-#raw_input('Program paused. Press enter to continue.\n');
+# raw_input('Program paused. Press enter to continue.\n');
 ##%% =================== Part 3: Gradient descent ===================
 # convert to column vec
 X.shape = (97, 1)
 
-
 ##X = [ones(m, 1), data(:,1)]; % Add a column of ones to x
 
-#insert one col before it
-#np.insert param(original_matrix, offset, insert_value, insert_column_num)
+# insert one col before it
+# np.insert param(original_matrix, offset, insert_value, insert_column_num)
 X = np.insert(X, 0, 1, axis=1)
-
 
 print X
 
 ##theta = zeros(2, 1); % initialize fitting parameters
-#theta = np.array([0,0])
-#theta.shape =(2, 1)
-theta = np.array([[0],[0]]) # theta is column vec
+# theta = np.array([0,0])
+# theta.shape =(2, 1)
+theta = np.array([[0], [0]])  # theta is column vec
 
 print "theta:"
 print theta
 
-#% Some gradient descent settings
+# % Some gradient descent settings
 iterations = 1500
 alpha = 0.01
 
-#% compute and display initial cost
-#computeCost(X, y, theta)
+# % compute and display initial cost
+# computeCost(X, y, theta)
 J = computeCost(X, y, theta)
 
-#% run gradient descent
-#theta = gradientDescent(X, y, theta, alpha, iterations);
+# % run gradient descent
+# theta = gradientDescent(X, y, theta, alpha, iterations);
 gradientDescent(X, y, theta, alpha, iterations)
 
 print "done"
-
-
-
-
-
-
-
