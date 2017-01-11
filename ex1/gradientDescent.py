@@ -17,7 +17,7 @@ def gradientDescent(X, y, theta, alpha, num_iters):
         # of the cost function (computeCost) and gradient here.
         predictions = np.dot(X, theta)
 
-        # ignore derivation
+        # ignore derivation, update is a partial derivative
         #updates = X' * (predictions - y);
         updates = np.dot(np.transpose(X), (predictions-y))
 
