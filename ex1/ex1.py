@@ -161,7 +161,23 @@ print('Visualizing J(theta_0, theta_1) ...')
 theta0_vals = np.linspace(-10, 10, 100)
 theta1_vals = np.linspace(-1, 4, 100)
 
+
 J_vals = np.zeros((len(theta0_vals), len(theta1_vals)))
+#% Fill out J_vals
+
+#for i = 1:length(theta0_vals)
+#    for j = 1:length(theta1_vals)
+#	  t = [theta0_vals(i); theta1_vals(j)];
+#	  J_vals(i,j) = computeCost(X, y, t);
+#    end
+#end
+
+for i in range(0, len(theta0_vals)):
+    for j in range(0, len(theta1_vals)):
+        t = np.array([theta0_vals[i], theta1_vals[j]])
+        t.shape = (2, 1)
+        J_vals[i][j] = computeCost(X1, y, t)
+
 
 
 
