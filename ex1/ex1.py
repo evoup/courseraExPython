@@ -220,14 +220,14 @@ surf = ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap=cm.coolwarm,
 
 fig = plt.figure()
 ax = fig.gca(projection='3d')
-ax.contour(theta0_vals, theta1_vals, J_vals, np.logspace(-2, 3, 20))
+ax.contour(theta0_vals, theta1_vals, J_vals, np.logspace(-2, 3, 20), cmap=cm.coolwarm)
 
 
 ax.plot(newTheta[0], newTheta[1])
 # Draw the min points
 min_points_x = newTheta[0]
 min_points_y = newTheta[1]
-ax.plot(min_points_x, min_points_y, 'rx')
+ax.plot(min_points_x, min_points_y, 'rx', markersize=10, linewidth=2)
 
 matplotlib.pyplot.show()
 
