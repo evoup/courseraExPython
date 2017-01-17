@@ -5,6 +5,10 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import numpy as np
 
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
+from matplotlib.ticker import LinearLocator, FormatStrFormatter
+
 from warmUpExercise import warmUpExercise
 from computeCost import computeCost
 from gradientDescent import gradientDescent
@@ -146,6 +150,43 @@ print('For population = 35,000, we predict a profit of %0.6f\n' % profit)
 predict1 = np.dot([1, 7], newTheta)
 profit = float(predict1)*10000
 print('For population = 70,000, we predict a profit of %0.6f\n' % profit)
+
+
+#%% ============= Part 4: Visualizing J(theta_0, theta_1) =============
+print('Visualizing J(theta_0, theta_1) ...')
+
+#% Grid over which we will calculate J
+#theta0_vals = linspace(-10, 10, 100);
+#theta1_vals = linspace(-1, 4, 100);
+theta0_vals = np.linspace(-10, 10, 100)
+theta1_vals = np.linspace(-1, 4, 100)
+
+J_vals = np.zeros((len(theta0_vals), len(theta1_vals)))
+
+
+
+
+#fig = plt.figure()
+#ax = fig.gca(projection='3d')
+#X = np.arange(-5, 5, 0.25)
+#Y = np.arange(-5, 5, 0.25)
+#X, Y = np.meshgrid(X, Y)
+#R = np.sqrt(X**2 + Y**2)
+#Z = np.sin(R)
+#surf = ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap=cm.coolwarm,
+#                       linewidth=0, antialiased=False)
+#ax.set_zlim(-1.01, 1.01)
+
+#ax.zaxis.set_major_locator(LinearLocator(10))
+#ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
+
+#fig.colorbar(surf, shrink=0.5, aspect=5)
+
+
+
+
+
+
 
 matplotlib.pyplot.show()
 
