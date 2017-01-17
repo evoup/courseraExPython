@@ -67,7 +67,7 @@ print('number of samples:%s' % m)
 
 matplotlib.pyplot.scatter(X, y)
 
-matplotlib.pyplot.show()
+#matplotlib.pyplot.show()
 
 # raw_input('Program paused. Press enter to continue.\n');
 ##%% =================== Part 3: Gradient descent ===================
@@ -109,4 +109,25 @@ newTheta = gradientDescent(X, y, theta, alpha, iterations)
 print('Theta found by gradient descent: ')
 #print ("%.2f" % newTheta[0][0])
 print ("%.2f %.2f" % (newTheta[0][0], newTheta[1][0]))
+
+
+#% Plot the linear fit
+#hold on; % keep previous plot visible
+#plot(X(:,2), X*theta, '-')
+#legend('Training data', 'Linear regression')
+#hold off % don't overlay any more plots on this figure
+
+
+matplotlib.pyplot.hold(True)
+X = arr[0]
+
+X.shape = (97, 1)
+X1 = np.insert(X, 0, 1, axis=1)
+#newTheta.shape = (1, 2)
+matplotlib.pyplot.plot(X, np.dot(X1, newTheta), color='blue')
+
+#matplotlib.pyplot.ylim(-10, 30)
+#matplotlib.pyplot.ylim(4, 30)
+matplotlib.pyplot.hold(False)
+matplotlib.pyplot.show()
 print "done"
