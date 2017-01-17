@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import matplotlib
-import matplotlib.pyplot
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 import numpy as np
 
 from warmUpExercise import warmUpExercise
@@ -129,6 +130,8 @@ matplotlib.pyplot.plot(X, np.dot(X1, newTheta), color='blue')
 #matplotlib.pyplot.ylim(-10, 30)
 #matplotlib.pyplot.ylim(4, 30)
 #matplotlib.pyplot.hold(False)
+
+
 matplotlib.pyplot.show()
 
 
