@@ -118,16 +118,20 @@ print ("%.2f %.2f" % (newTheta[0][0], newTheta[1][0]))
 #hold off % don't overlay any more plots on this figure
 
 
-matplotlib.pyplot.hold(True)
+#matplotlib.pyplot.hold(True)
 X = arr[0]
 
 X.shape = (97, 1)
 X1 = np.insert(X, 0, 1, axis=1)
-#newTheta.shape = (1, 2)
+
 matplotlib.pyplot.plot(X, np.dot(X1, newTheta), color='blue')
 
 #matplotlib.pyplot.ylim(-10, 30)
 #matplotlib.pyplot.ylim(4, 30)
-matplotlib.pyplot.hold(False)
+#matplotlib.pyplot.hold(False)
 matplotlib.pyplot.show()
+
+
+
+
 print "done"
