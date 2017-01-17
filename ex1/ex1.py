@@ -131,6 +131,21 @@ matplotlib.pyplot.plot(X, np.dot(X1, newTheta), color='blue')
 #matplotlib.pyplot.ylim(4, 30)
 #matplotlib.pyplot.hold(False)
 
+#% Predict values for population sizes of 35,000 and 70,000
+#predict1 = [1, 3.5] *theta;
+#fprintf('For population = 35,000, we predict a profit of %f\n',...
+#    predict1*10000);
+#predict2 = [1, 7] * theta;
+#fprintf('For population = 70,000, we predict a profit of %f\n',...
+#    predict2*10000);
+
+predict1 = np.dot([1, 3.5], newTheta)
+profit = float(predict1)*10000
+print('For population = 35,000, we predict a profit of %0.6f\n' % profit)
+
+predict1 = np.dot([1, 7], newTheta)
+profit = float(predict1)*10000
+print('For population = 70,000, we predict a profit of %0.6f\n' % profit)
 
 matplotlib.pyplot.show()
 
