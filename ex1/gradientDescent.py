@@ -23,4 +23,4 @@ def gradientDescent(X, y, theta, alpha, num_iters):
 
         theta = theta - alpha * (float(1) / m) * updates
 
-        print theta
+    return theta

@@ -102,6 +102,6 @@ J = computeCost(X, y, theta)
 
 # % run gradient descent
 # theta = gradientDescent(X, y, theta, alpha, iterations);
-gradientDescent(X, y, theta, alpha, iterations)
+newTheta = gradientDescent(X, y, theta, alpha, iterations)
 
 print "done"
