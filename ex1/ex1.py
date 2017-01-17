@@ -224,6 +224,10 @@ ax.contour(theta0_vals, theta1_vals, J_vals, np.logspace(-2, 3, 20))
 
 
 ax.plot(newTheta[0], newTheta[1])
+# Draw the min points
+min_points_x = newTheta[0]
+min_points_y = newTheta[1]
+ax.plot(min_points_x, min_points_y, 'rx')
 
 matplotlib.pyplot.show()
 
