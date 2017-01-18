@@ -30,6 +30,7 @@
 # %% ================ Part 1: Feature Normalization ================
 import numpy as np
 import os
+import matplotlib.pyplot as plt
 from pandas.compat import scipy
 
 from featureNormalize import featureNormalize
@@ -100,6 +101,9 @@ num_iters = 400
 # [theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters);
 theta = np.zeros((3, 1))
 theta, J_history = gradientDescentMulti(X, y, theta, alpha, num_iters)
+
+plt.plot(np.linspace(0, 400, 400), J_history)
+plt.show()
 
 
 print "done"
