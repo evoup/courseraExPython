@@ -39,11 +39,19 @@ print('Loading data ...\n')
 # X = data(:, 1:2);
 # y = data(:, 3);
 # m = length(y);
-data = np.loadtxt(os.getcwd() + '/ex1data2.txt', delimiter=',', usecols=(0, 1, 2), unpack=True)
+data = np.loadtxt(os.getcwd() + '/ex1data2.txt', delimiter=',', usecols=(0, 1, 2), unpack=True, dtype=float)
 data = data.transpose()
 X = data[:, [0, 1]]  # get first and second col
 y = data[:, 2]  # third col
+m = len(y)
+#% Print out some data points
+print('First 10 examples from the dataset: \n')
+#print(' x = [%.2f %.2f], y = %.2f \n' %([X[1:10, :], y[1:10, :]]))
 
+#X[0:47] [0:10]
+print(' X = %s \n' % X[0:47] [0:10])
+#y[0:m][0:10]
+print(' y = %s \n' % y[0:m][0:10])
 print "done"
 
 
