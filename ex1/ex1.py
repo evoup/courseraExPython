@@ -1,21 +1,4 @@
 # -*- coding: utf-8 -*-
-
-import matplotlib
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-import numpy as np
-
-from mpl_toolkits.mplot3d import Axes3D
-from matplotlib import cm
-from matplotlib.ticker import LinearLocator, FormatStrFormatter
-
-from warmUpExercise import warmUpExercise
-from computeCost import computeCost
-from gradientDescent import gradientDescent
-
-# import scipy.io
-import os
-
 ## Machine Learning Online Class - Exercise 1: Linear Regression
 
 ##  Instructions
@@ -44,6 +27,23 @@ import os
 ## % Initialization
 ## ==================== Part 1: Basic Function ====================
 ## Complete warmUpExercise.m
+
+import matplotlib
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+import numpy as np
+
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
+from matplotlib.ticker import LinearLocator, FormatStrFormatter
+
+from warmUpExercise import warmUpExercise
+from computeCost import computeCost
+from gradientDescent import gradientDescent
+
+# import scipy.io
+import os
+
 print('Running warmUpExercise ... \n')
 print('5x5 Identity Matrix: \n')
 
