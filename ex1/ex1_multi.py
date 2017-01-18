@@ -138,8 +138,18 @@ print('Theta computed from the normal equations: \n')
 print(' %f \n', theta)
 print('\n')
 
+# % Estimate the price of a 1650 sq-ft, 3 br house
+# % ====================== YOUR CODE HERE ======================
+# price = dot(theta, [1 1650 3]); % You should change this
+#
+#
+# % ============================================================
+#
+# fprintf(['Predicted price of a 1650 sq-ft, 3 br house ' ...
+#          '(using normal equations):\n $%f\n'], price);
 
-
+price = np.dot(theta, [1, 1650, 3])
+print('Predicted price of a 1650 sq-ft, 3 br house (using normal equations):\n $%0.2f\n' % price)
 
 
 print "done"
