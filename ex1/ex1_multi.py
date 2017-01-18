@@ -33,6 +33,7 @@ import os
 import matplotlib.pyplot as plt
 from pandas.compat import scipy
 
+from normalEqn import normalEqn
 from featureNormalize import featureNormalize
 from gradientDescentMulti import gradientDescentMulti
 
@@ -104,6 +105,41 @@ theta, J_history = gradientDescentMulti(X, y, theta, alpha, num_iters)
 
 plt.plot(np.linspace(0, 400, 400), J_history)
 plt.show()
+
+# %% ================ Part 3: Normal Equations ================
+#
+# fprintf('Solving with normal equations...\n');
+#
+# % ====================== YOUR CODE HERE ======================
+# % Instructions: The following code computes the closed form
+# %               solution for linear regression using the normal
+# %               equations. You should complete the code in
+# %               normalEqn.m
+# %
+# %               After doing so, you should complete this code
+# %               to predict the price of a 1650 sq-ft, 3 br house.
+# %
+#
+# %% Load Data
+
+data = np.loadtxt(os.getcwd() + '/ex1data2.txt', delimiter=',', usecols=(0, 1, 2), unpack=True, dtype=float)
+data = data.transpose()
+X = data[:, [0, 1]]  # get first and second col
+y = data[:, 2]  # third col
+m = len(y)
+# % Add intercept term to X
+# X = [ones(m, 1) X];
+X = np.insert(X, 0, 1, axis=1)
+# % Calculate the parameters from the normal equation
+theta = normalEqn(X, y)
+
+# % Display normal equation's result
+print('Theta computed from the normal equations: \n')
+print(' %f \n', theta)
+print('\n')
+
+
+
 
 
 print "done"
