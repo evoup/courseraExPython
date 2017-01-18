@@ -32,6 +32,8 @@ import numpy as np
 import os
 from pandas.compat import scipy
 
+from featureNormalize import featureNormalize
+
 print('Loading data ...\n')
 
 # %% Load Data
@@ -52,6 +54,14 @@ print('First 10 examples from the dataset: \n')
 print(' X = %s \n' % X[0:47] [0:10])
 #y[0:m][0:10]
 print(' y = %s \n' % y[0:m][0:10])
+
+#% Scale features and set them to zero mean
+print('Normalizing Features ...\n')
+#[X mu sigma] = featureNormalize(X);
+
+X_norm, mu, sigma = featureNormalize(X)
+
+
 print "done"
 
 
