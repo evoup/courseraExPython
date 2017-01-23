@@ -26,7 +26,18 @@
 #
 # data = load('ex2data1.txt');
 # X = data(:, [1, 2]); y = data(:, 3);
-#
+import numpy as np
+import os
+
+from plotData import plotData
+
+arr = np.loadtxt(os.getcwd() + '/ex2data1.txt', delimiter=',', usecols=(0, 1, 2), unpack=True)
+data = arr.transpose()
+X = data[:, [0, 1]]  # get first and second col
+y = data[:, 2]  # third col
+
+plotData(X, y)
+
 # %% ==================== Part 1: Plotting ====================
 # %  We start the exercise by first plotting the data to understand the
 # %  the problem we are working with.
