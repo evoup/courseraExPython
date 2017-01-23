@@ -49,5 +49,8 @@ def plotData(X, y):
     neg = indices(y, lambda z: z == 0)
     plt.scatter(X[pos][:, 0], X[pos][:, 1], marker='+', c="black", linewidths=1)
     plt.scatter(X[neg][:, 0], X[neg][:, 1], marker='o', c="yellow", linewidths=1)
+    plt.xlabel('Exam 1 score')
+    plt.ylabel('Exam 2 score')
+    plt.legend(['Admitted', 'Not admitted'])
     plt.show()
 

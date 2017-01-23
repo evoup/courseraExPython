@@ -130,6 +130,9 @@ X.shape = (97, 1)
 X1 = np.insert(X, 0, 1, axis=1)
 
 matplotlib.pyplot.plot(X, np.dot(X1, newTheta), color='blue')
+plt.legend(['Training data', 'Linear regression'])
+plt.xlabel('Profit in $10,000s')
+plt.ylabel('Population of City in 10,000s')
 
 #matplotlib.pyplot.ylim(-10, 30)
 #matplotlib.pyplot.ylim(4, 30)
