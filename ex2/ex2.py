@@ -83,10 +83,12 @@ initial_theta = np.zeros((n + 1, 1))
 # [cost, grad] = costFunction(initial_theta, X, y);
 cost, grad = costFunction(initial_theta, X, y)
 #
-# fprintf('Cost at initial theta (zeros): %f\n', cost);
-# fprintf('Gradient at initial theta (zeros): \n');
+print('Cost at initial theta (zeros): %0.2f\n', cost)
+print('Gradient at initial theta (zeros): \n')
 # fprintf(' %f \n', grad);
+print ("%.2f %.2f %.2f" % (grad[0][1], grad[0][1], grad[0][2]))
 #
+
 # fprintf('\nProgram paused. Press enter to continue.\n');
 # pause;
 #
