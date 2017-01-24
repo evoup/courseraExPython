@@ -51,7 +51,7 @@ def costFunction(theta, X, y):
     predictions = sigmoid(np.dot(X, theta))
     left = - np.dot(y.T, (np.log(predictions)))
     right = np.dot((1 - y.T), (np.log(1 - predictions)))
-    J = (float(1)/m) * (left - right)
-    y.shape = (100, 1) # must conevert to matrix
+    J = (float(1) / m) * (left - right)
+    y.shape = (100, 1)  # must convert to matrix
     grad = (float(1) / m) * np.dot(np.transpose(predictions - y), X)
     return J, grad
