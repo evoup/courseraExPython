@@ -29,6 +29,7 @@
 import numpy as np
 import os
 
+from costFunction import costFunction
 from plotData import plotData
 
 arr = np.loadtxt(os.getcwd() + '/ex2data1.txt', delimiter=',', usecols=(0, 1, 2), unpack=True)
@@ -36,17 +37,16 @@ data = arr.transpose()
 X = data[:, [0, 1]]  # get first and second col
 y = data[:, 2]  # third col
 
-plotData(X, y)
-
 # %% ==================== Part 1: Plotting ====================
 # %  We start the exercise by first plotting the data to understand the
 # %  the problem we are working with.
 #
-# fprintf(['Plotting data with + indicating (y = 1) examples and o ' ...
-#          'indicating (y = 0) examples.\n']);
+print(['Plotting data with + indicating (y = 1) examples and o indicating (y = 0) examples.\n'])
 #
 # plotData(X, y);
 #
+plotData(X, y)
+
 # % Put some labels
 # hold on;
 # % Labels and Legend
@@ -68,15 +68,20 @@ plotData(X, y)
 #
 # %  Setup the data matrix appropriately, and add ones for the intercept term
 # [m, n] = size(X);
+m, n = X.shape
+
 #
 # % Add intercept term to x and X_test
 # X = [ones(m, 1) X];
+X = np.insert(X, 0, 1, axis=1)
 #
 # % Initialize fitting parameters
 # initial_theta = zeros(n + 1, 1);
+initial_theta = np.zeros((n + 1, 1))
 #
 # % Compute and display initial cost and gradient
 # [cost, grad] = costFunction(initial_theta, X, y);
+cost, grad = costFunction(initial_theta, X, y)
 #
 # fprintf('Cost at initial theta (zeros): %f\n', cost);
 # fprintf('Gradient at initial theta (zeros): \n');
@@ -145,3 +150,5 @@ plotData(X, y)
 # fprintf('\nProgram paused. Press enter to continue.\n');
 # pause;
 #
+
+print "done"
