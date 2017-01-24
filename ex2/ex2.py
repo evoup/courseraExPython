@@ -28,8 +28,9 @@
 # X = data(:, [1, 2]); y = data(:, 3);
 import numpy as np
 import os
+from scipy.optimize import fmin_bfgs, fmin
 
-from costFunction import costFunction
+from costFunction import costFunction, costFunction2
 from plotData import plotData
 
 arr = np.loadtxt(os.getcwd() + '/ex2data1.txt', delimiter=',', usecols=(0, 1, 2), unpack=True)
@@ -86,7 +87,7 @@ cost, grad = costFunction(initial_theta, X, y)
 print('Cost at initial theta (zeros): %0.2f\n', cost)
 print('Gradient at initial theta (zeros): \n')
 # fprintf(' %f \n', grad);
-print ("%.2f %.2f %.2f" % (grad[0][1], grad[0][1], grad[0][2]))
+print ("%.2f %.2f %.2f" % (grad[0][0], grad[0][1], grad[0][2]))
 #
 
 # fprintf('\nProgram paused. Press enter to continue.\n');
@@ -104,6 +105,14 @@ print ("%.2f %.2f %.2f" % (grad[0][1], grad[0][1], grad[0][2]))
 # %  This function will return theta and the cost
 # [theta, cost] = ...
 # 	fminunc(@(t)(costFunction(t, X, y)), initial_theta, options);
+# f_, fprime = func_wrapper(costFunction2(initial_theta, X, y))
+#
+# print fmin_bfgs(f_, initial_theta, maxiter=400)
+
+options = {'full_output': True, 'maxiter': 400}
+theta, cost, _, _, _ = fmin(lambda t: costFunction2(X, y, t), initial_theta, **options)
+print("Cost at theta found by fmin: %.6f" % cost)
+print("theta: %.6f %.6f %.6f" % (theta[0], theta[1], theta[2]))
 #
 # % Print theta to screen
 # fprintf('Cost at theta found by fminunc: %f\n', cost);

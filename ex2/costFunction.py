@@ -55,3 +55,17 @@ def costFunction(theta, X, y):
     y.shape = (100, 1)  # must convert to matrix
     grad = (float(1) / m) * np.dot(np.transpose(predictions - y), X)
     return J, grad
+
+
+# same as costFunction above, just param order and return item be changed
+def costFunction2(X, y, theta):
+    m = len(y)
+    J = 0
+    grad = np.zeros(theta.shape)
+    predictions = sigmoid(np.dot(X, theta))
+    left = - np.dot(y.T, (np.log(predictions)))
+    right = np.dot((1 - y.T), (np.log(1 - predictions)))
+    J = (float(1) / m) * (left - right)
+    y.shape = (100, 1)  # must convert to matrix
+    grad = (float(1) / m) * np.dot(np.transpose(predictions - y), X)
+    return J
