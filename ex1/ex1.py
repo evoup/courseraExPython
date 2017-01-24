@@ -72,7 +72,7 @@ print('number of samples:%s' % m)
 
 matplotlib.pyplot.scatter(X, y)
 
-#matplotlib.pyplot.show()
+# matplotlib.pyplot.show()
 
 # raw_input('Program paused. Press enter to continue.\n');
 ##%% =================== Part 3: Gradient descent ===================
@@ -108,22 +108,21 @@ J = computeCost(X, y, theta)
 # % run gradient descent
 # theta = gradientDescent(X, y, theta, alpha, iterations);
 newTheta = gradientDescent(X, y, theta, alpha, iterations)
-#% print theta to screen
-#fprintf('Theta found by gradient descent: ');
-#fprintf('%f %f \n', theta(1), theta(2));
+# % print theta to screen
+# fprintf('Theta found by gradient descent: ');
+# fprintf('%f %f \n', theta(1), theta(2));
 print('Theta found by gradient descent: ')
-#print ("%.2f" % newTheta[0][0])
+# print ("%.2f" % newTheta[0][0])
 print ("%.2f %.2f" % (newTheta[0][0], newTheta[1][0]))
 
+# % Plot the linear fit
+# hold on; % keep previous plot visible
+# plot(X(:,2), X*theta, '-')
+# legend('Training data', 'Linear regression')
+# hold off % don't overlay any more plots on this figure
 
-#% Plot the linear fit
-#hold on; % keep previous plot visible
-#plot(X(:,2), X*theta, '-')
-#legend('Training data', 'Linear regression')
-#hold off % don't overlay any more plots on this figure
 
-
-#matplotlib.pyplot.hold(True)
+# matplotlib.pyplot.hold(True)
 X = arr[0]
 
 X.shape = (97, 1)
@@ -134,46 +133,44 @@ plt.legend(['Training data', 'Linear regression'])
 plt.xlabel('Profit in $10,000s')
 plt.ylabel('Population of City in 10,000s')
 
-#matplotlib.pyplot.ylim(-10, 30)
-#matplotlib.pyplot.ylim(4, 30)
-#matplotlib.pyplot.hold(False)
+# matplotlib.pyplot.ylim(-10, 30)
+# matplotlib.pyplot.ylim(4, 30)
+# matplotlib.pyplot.hold(False)
 
-#% Predict values for population sizes of 35,000 and 70,000
-#predict1 = [1, 3.5] *theta;
-#fprintf('For population = 35,000, we predict a profit of %f\n',...
+# % Predict values for population sizes of 35,000 and 70,000
+# predict1 = [1, 3.5] *theta;
+# fprintf('For population = 35,000, we predict a profit of %f\n',...
 #    predict1*10000);
-#predict2 = [1, 7] * theta;
-#fprintf('For population = 70,000, we predict a profit of %f\n',...
+# predict2 = [1, 7] * theta;
+# fprintf('For population = 70,000, we predict a profit of %f\n',...
 #    predict2*10000);
 
 predict1 = np.dot([1, 3.5], newTheta)
-profit = float(predict1)*10000
+profit = float(predict1) * 10000
 print('For population = 35,000, we predict a profit of %0.6f\n' % profit)
 
 predict1 = np.dot([1, 7], newTheta)
-profit = float(predict1)*10000
+profit = float(predict1) * 10000
 print('For population = 70,000, we predict a profit of %0.6f\n' % profit)
 
-
-#%% ============= Part 4: Visualizing J(theta_0, theta_1) =============
+# %% ============= Part 4: Visualizing J(theta_0, theta_1) =============
 print('Visualizing J(theta_0, theta_1) ...')
 
-#% Grid over which we will calculate J
-#theta0_vals = linspace(-10, 10, 100);
-#theta1_vals = linspace(-1, 4, 100);
+# % Grid over which we will calculate J
+# theta0_vals = linspace(-10, 10, 100);
+# theta1_vals = linspace(-1, 4, 100);
 theta0_vals = np.linspace(-10, 10, 100)
 theta1_vals = np.linspace(-1, 4, 100)
 
-
 J_vals = np.zeros((len(theta0_vals), len(theta1_vals)))
-#% Fill out J_vals
+# % Fill out J_vals
 
-#for i = 1:length(theta0_vals)
+# for i = 1:length(theta0_vals)
 #    for j = 1:length(theta1_vals)
 #	  t = [theta0_vals(i); theta1_vals(j)];
 #	  J_vals(i,j) = computeCost(X, y, t);
 #    end
-#end
+# end
 
 for i in range(0, len(theta0_vals)):
     for j in range(0, len(theta1_vals)):
@@ -181,15 +178,14 @@ for i in range(0, len(theta0_vals)):
         t.shape = (2, 1)
         J_vals[i][j] = computeCost(X1, y, t)
 
-
-#% Because of the way meshgrids work in the surf command, we need to
-#% transpose J_vals before calling surf, or else the axes will be flipped
+# % Because of the way meshgrids work in the surf command, we need to
+# % transpose J_vals before calling surf, or else the axes will be flipped
 J_vals = np.transpose(J_vals)
 
-#% Surface plot
-#figure;
-#surf(theta0_vals, theta1_vals, J_vals)
-#xlabel('\theta_0'); ylabel('\theta_1');
+# % Surface plot
+# figure;
+# surf(theta0_vals, theta1_vals, J_vals)
+# xlabel('\theta_0'); ylabel('\theta_1');
 
 
 
@@ -205,26 +201,25 @@ ax.set_ylabel('theta_1')
 ax.set_zlabel('J_val')
 surf = ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap=cm.coolwarm,
                        linewidth=0, antialiased=False)
-#ax.set_zlim(-1.01, 1.01)
+# ax.set_zlim(-1.01, 1.01)
 
-#ax.zaxis.set_major_locator(LinearLocator(10))
-#ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
+# ax.zaxis.set_major_locator(LinearLocator(10))
+# ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
 
-#fig.colorbar(surf, shrink=0.5, aspect=5)
+# fig.colorbar(surf, shrink=0.5, aspect=5)
 
 
 
-#% Contour plot
-#% Plot J_vals as 15 contours spaced logarithmically between 0.01 and 100
-#contour(theta0_vals, theta1_vals, J_vals, logspace(-2, 3, 20))
-#xlabel('\theta_0'); ylabel('\theta_1');
-#hold on;
-#plot(theta(1), theta(2), 'rx', 'MarkerSize', 10, 'LineWidth', 2);
+# % Contour plot
+# % Plot J_vals as 15 contours spaced logarithmically between 0.01 and 100
+# contour(theta0_vals, theta1_vals, J_vals, logspace(-2, 3, 20))
+# xlabel('\theta_0'); ylabel('\theta_1');
+# hold on;
+# plot(theta(1), theta(2), 'rx', 'MarkerSize', 10, 'LineWidth', 2);
 
 fig = plt.figure()
 ax = fig.gca(projection='3d')
 ax.contour(theta0_vals, theta1_vals, J_vals, np.logspace(-2, 3, 20), cmap=cm.coolwarm)
-
 
 ax.plot(newTheta[0], newTheta[1])
 # Draw the min points
@@ -233,8 +228,5 @@ min_points_y = newTheta[1]
 ax.plot(min_points_x, min_points_y, 'rx', markersize=10, linewidth=2)
 
 matplotlib.pyplot.show()
-
-
-
 
 print "done"
