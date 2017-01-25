@@ -44,7 +44,7 @@ import matplotlib.pyplot as plt
 def indices(a, func):
     return [i for (i, val) in enumerate(a) if func(val)]
 
-def plotData(X, y):
+def plotData(X, y, willShow):
     pos = indices(y, lambda z: z == 1)
     neg = indices(y, lambda z: z == 0)
     plt.scatter(X[pos][:, 0], X[pos][:, 1], marker='+', c="black", linewidths=1)
@@ -52,5 +52,6 @@ def plotData(X, y):
     plt.xlabel('Exam 1 score')
     plt.ylabel('Exam 2 score')
     plt.legend(['Admitted', 'Not admitted'])
-    plt.show()
+    if willShow:
+        plt.show()
 

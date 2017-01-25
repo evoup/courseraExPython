@@ -31,6 +31,7 @@ import os
 from scipy.optimize import fmin_bfgs, fmin
 
 from costFunction import costFunction, costFunction2
+from plotDecisionBoundary import plotDecisionBoundary
 from plotData import plotData
 
 arr = np.loadtxt(os.getcwd() + '/ex2data1.txt', delimiter=',', usecols=(0, 1, 2), unpack=True)
@@ -46,7 +47,7 @@ print(['Plotting data with + indicating (y = 1) examples and o indicating (y = 0
 #
 # plotData(X, y);
 #
-plotData(X, y)
+plotData(X, y, True)
 
 # % Put some labels
 # hold on;
@@ -131,6 +132,9 @@ print("theta: %.6f %.6f %.6f" % (theta[0], theta[1], theta[2]))
 # % Specified in plot order
 # legend('Admitted', 'Not admitted')
 # hold off;
+
+plotDecisionBoundary(theta, X, y)
+
 #
 # fprintf('\nProgram paused. Press enter to continue.\n');
 # pause;
