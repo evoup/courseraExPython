@@ -31,6 +31,8 @@ import os
 from scipy.optimize import fmin_bfgs, fmin
 
 from costFunction import costFunction, costFunction2
+from predict import predict
+from sigmoid import sigmoid
 from plotDecisionBoundary import plotDecisionBoundary
 from plotData import plotData
 
@@ -156,11 +158,17 @@ plotDecisionBoundary(theta, X, y)
 # prob = sigmoid([1 45 85] * theta);
 # fprintf(['For a student with scores 45 and 85, we predict an admission ' ...
 #          'probability of %f\n\n'], prob);
+
+prob = sigmoid(np.dot(np.array([1, 45, 85]), theta))
+print('For a student with scores 45 and 85, we predict an admission probability of %f\n\n' % prob)
 #
 # % Compute accuracy on our training set
 # p = predict(theta, X);
 #
 # fprintf('Train Accuracy: %f\n', mean(double(p == y)) * 100);
+
+p = predict(theta, X)
+print('Train Accuracy: %f\n', np.mean(p == y) * 100)
 #
 # fprintf('\nProgram paused. Press enter to continue.\n');
 # pause;

@@ -63,3 +63,4 @@ def plotDecisionBoundary(theta, X, y):
         plot_y = np.dot((-1 / theta[2]), (np.dot(theta[1],  plot_x) + theta[0]))
         plt.plot(plot_x, plot_y, color='blue')
         plt.show()
+        # TODO else another branch
