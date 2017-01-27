@@ -118,6 +118,7 @@
 import numpy as np
 import os
 
+from costFunctionReg import costFunctionReg
 from mapFeature import mapFeature
 from plotData import plotData
 
@@ -126,5 +127,14 @@ X = arr.T[:, [0, 1]]  # get first and second col
 y = arr.T[:, 2]  # third col
 plotData(X, y, True, 'Microchip Test 1', 'Microchip Test 2', ['y = 1', 'y = 0'])
 X = mapFeature(X[:, 0], X[:, 1])
+_, cols = X.shape
+initial_theta = np.zeros((cols, 1))
+lambda_param = 1
 
+cost, grad = costFunctionReg(initial_theta, X, y, lambda_param)
+print('Cost at initial theta (zeros): %f\n', cost)
+print('Gradient at initial theta (zeros): \n')
+for i in range(len(grad)):
+    print ("%f " % (grad[i])),
+print "\n"
 print "done"
