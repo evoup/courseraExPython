@@ -118,9 +118,13 @@
 import numpy as np
 import os
 
+from mapFeature import mapFeature
 from plotData import plotData
 
 arr = np.loadtxt(os.getcwd() + '/ex2data2.txt', delimiter=',', usecols=(0, 1, 2), unpack=True)
 X = arr.T[:, [0, 1]]  # get first and second col
 y = arr.T[:, 2]  # third col
 plotData(X, y, True, 'Microchip Test 1', 'Microchip Test 2', ['y = 1', 'y = 0'])
+X = mapFeature(X[:, 0], X[:, 1])
+
+print "done"
