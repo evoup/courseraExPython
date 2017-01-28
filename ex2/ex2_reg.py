@@ -118,9 +118,12 @@
 import numpy as np
 import os
 
-from costFunctionReg import costFunctionReg
+from costFunctionReg import costFunctionReg, costFunctionReg2
+from plotDecisionBoundary import plotDecisionBoundary
+from predict import predict
 from mapFeature import mapFeature
 from plotData import plotData
+from scipy.optimize import fmin
 
 arr = np.loadtxt(os.getcwd() + '/ex2data2.txt', delimiter=',', usecols=(0, 1, 2), unpack=True)
 X = arr.T[:, [0, 1]]  # get first and second col
@@ -131,10 +134,16 @@ _, cols = X.shape
 initial_theta = np.zeros((cols, 1))
 lambda_param = 1
 
-cost, grad = costFunctionReg(initial_theta, X, y, lambda_param)
+cost, grad = costFunctionReg(X, y, initial_theta, lambda_param)
 print('Cost at initial theta (zeros): %f\n', cost)
 print('Gradient at initial theta (zeros): \n')
 for i in range(len(grad)):
     print ("%f " % (grad[i])),
 print "\n"
+options = {'full_output': True, 'maxiter': 400}
+theta, cost, _, _, _ = fmin(lambda t: costFunctionReg2(X, y, t, lambda_param), initial_theta, **options)
+
+plotDecisionBoundary(theta, X, y)
+p = predict(theta, X)
+print('Train Accuracy: %f\n', np.mean(p == y) * 100)
 print "done"

@@ -47,7 +47,7 @@ import numpy as np
 from sigmoid import sigmoid
 
 
-def costFunctionReg(theta, X, y, lambda_param):
+def costFunctionReg(X, y, theta, lambda_param):
     m = len(y)
     J = 0
     grad = np.zeros(theta.shape)
@@ -60,5 +60,26 @@ def costFunctionReg(theta, X, y, lambda_param):
     lambdaGradPart = float(lambda_param) / m * thetaZero
     J = (float(1) / m) * (left - right) + lambdaCostPart
     y.shape = (len(y), 1)  # convert to matrix
+    predictions.shape = (len(predictions), 1)
+    lambdaGradPart.shape = (len(lambdaGradPart), 1)
     grad = (float(1) / m) * np.dot(X.T, predictions - y) + lambdaGradPart
     return J, grad
+
+
+def costFunctionReg2(X, y, theta, lambda_param):
+    m = len(y)
+    J = 0
+    grad = np.zeros(theta.shape)
+    predictions = sigmoid(np.dot(X, theta))
+    left = -np.dot(y.T, np.log(predictions))
+    right = np.dot((1 - y.T), np.log(1 - predictions))
+    thetaZero = theta
+    thetaZero[0] = 0  # should not regularize the parameter θ 0
+    lambdaCostPart = (float(lambda_param) / (2 * m)) * np.sum(np.power(thetaZero, 2))
+    # lambdaGradPart = float(lambda_param) / m * thetaZero
+    J = (float(1) / m) * (left - right) + lambdaCostPart
+    # y.shape = (len(y), 1)  # convert to matrix
+    # predictions.shape = (len(predictions), 1)
+    # lambdaGradPart.shape = (len(lambdaGradPart), 1)
+    # grad = (float(1) / m) * np.dot(X.T, predictions - y) + lambdaGradPart
+    return J
