@@ -120,14 +120,16 @@ import os
 from scipy.optimize import fmin_bfgs
 
 from costFunctionReg import costFunctionReg, costFunctionReg2
+from plotDecisionBoundary import plotDecisionBoundary
 from mapFeature import mapFeature
 from plotData import plotData
 from predict import predict
+import matplotlib.pyplot as plt
 
 arr = np.loadtxt(os.getcwd() + '/ex2data2.txt', delimiter=',', usecols=(0, 1, 2), unpack=True)
 X = arr.T[:, [0, 1]]  # get first and second col
 y = arr.T[:, 2]  # third col
-plotData(X, y, True, 'Microchip Test 1', 'Microchip Test 2', ['y = 1', 'y = 0'])
+plotData(X, y, True, plt, 'Microchip Test 1', 'Microchip Test 2', ['y = 1', 'y = 0'])
 X = mapFeature(X[:, 0], X[:, 1])
 _, cols = X.shape
 initial_theta = np.zeros((cols, 1))
@@ -145,7 +147,7 @@ print "\n"
 # fmin_bfgs param 1 can alse specify with decorated_cost like defined above
 result_theta = fmin_bfgs(lambda t: costFunctionReg2(t, X, y, lambda_param), initial_theta, maxiter=400)
 
-# plotDecisionBoundary(theta, X, y)
+plotDecisionBoundary(result_theta, X, y)
 p = predict(result_theta, X)
 print('Train Accuracy: %f\n', np.mean(p == y) * 100)
 print "done"

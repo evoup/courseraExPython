@@ -45,22 +45,31 @@ def indices(a, func):
     return [i for (i, val) in enumerate(a) if func(val)]
 
 
-def plotData(X, y, will_show, x_lable=None, y_lable=None, legend=None):
+def plotData(X, y, will_show, device_handle=plt, x_lable=None, y_lable=None, legend=None):
     pos = indices(y, lambda z: z == 1)
     neg = indices(y, lambda z: z == 0)
-    plt.scatter(X[pos][:, 0], X[pos][:, 1], marker='+', c="black", linewidths=1)
-    plt.scatter(X[neg][:, 0], X[neg][:, 1], marker='o', c="yellow", linewidths=1)
-    if x_lable is not None:
-        plt.xlabel(x_lable)
+    device_handle.scatter(X[pos][:, 0], X[pos][:, 1], marker='+', c="black", linewidths=1)
+    device_handle.scatter(X[neg][:, 0], X[neg][:, 1], marker='o', c="yellow", linewidths=1)
+    if device_handle == plt:
+        if x_lable is not None:
+            device_handle.xlabel(x_lable)
+        else:
+            device_handle.xlabel('Exam 1 score')
+        if y_lable is not None:
+            device_handle.ylabel(y_lable)
+        else:
+            device_handle.ylabel('Exam 2 score')
+        if legend is not None:
+            device_handle.legend(legend)
+        else:
+            device_handle.legend(['Admitted', 'Not admitted'])
     else:
-        plt.xlabel('Exam 1 score')
-    if y_lable is not None:
-        plt.ylabel(y_lable)
-    else:
-        plt.ylabel('Exam 2 score')
-    if legend is not None:
-        plt.legend(legend)
-    else:
-        plt.legend(['Admitted', 'Not admitted'])
+        if x_lable is not None:
+            plt.xlabel(x_lable)
+        if y_lable is not None:
+            plt.ylabel(y_lable)
+        if legend is not None:
+            plt.legend(legend)
+
     if will_show:
         plt.show()

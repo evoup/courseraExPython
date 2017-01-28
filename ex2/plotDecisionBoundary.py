@@ -49,18 +49,41 @@
 # end
 import numpy as np
 
+import matplotlib
+from matplotlib import cm
+
+from mapFeature import mapFeature
 from plotData import plotData
 import matplotlib.pyplot as plt
 
 
 def plotDecisionBoundary(theta, X, y):
-    plotData(X[:, (1, 2)], y, False)
+
     _, col = X.shape
     if col <= 3:
+        plotData(X[:, (1, 2)], y, False)
         np.max(X[:, 1])
         plt.hold(True)
         plot_x = [np.min(X[:, 1]) - 2, np.max(X[:, 1]) + 2]
         plot_y = np.dot((-1 / theta[2]), (np.dot(theta[1],  plot_x) + theta[0]))
         plt.plot(plot_x, plot_y, color='blue')
         plt.show()
+    else:
         # TODO else another branch
+        u = np.linspace(-1, 1.5, 50)
+        v = np.linspace(-1, 1.5, 50)
+        z = np.zeros((len(u), len(v)))
+        for i in range(1, len(u)):
+            for j in range(1, len(v)):
+                theta.shape = (28, 1)
+                l = mapFeature(u[i], v[j])
+                r = theta
+                z[i, j] = l.dot(r)
+        z = z.T
+        fig = plt.figure()
+        ax = fig.gca()
+        ax.contour(u, v, z, [0, 0], cmap=cm.coolwarm)
+        # ax.plot(X[:, (1, 2)], y)
+        plotData(X[:, (1, 2)], y, False, ax, 'Microchip Test 1', 'Microchip Test 2',
+                 ['y = 1', 'y = 0', 'Decision boundary'])
+        plt.show()

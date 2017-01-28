@@ -25,10 +25,13 @@ import numpy as np
 
 def mapFeature(X1, X2):
     degree = 6
-    rows = X1.shape
-    out = np.ones((rows))
-    rows_of_out = out.shape[0]
-    out.shape = (rows_of_out, 1)
+    if X1.shape == ():  # ex2_reg plot situation
+        out = np.ones((1, 1))
+    else:
+        rows = X1.shape
+        out = np.ones(rows)
+        rows_of_out = out.shape[0]
+        out.shape = (rows_of_out, 1)
     for i in range(1, degree + 1):
         for j in range(0, i + 1):
             insert_col = (np.power(X1, (i - j))) * (np.power(X2, j))
