@@ -54,7 +54,7 @@ def costFunctionReg(X, y, theta, lambda_param):
     predictions = sigmoid(np.dot(X, theta))
     left = -np.dot(y.T, np.log(predictions))
     right = np.dot((1 - y.T), np.log(1 - predictions))
-    thetaZero = theta
+    thetaZero = theta.copy()
     thetaZero[0] = 0  # should not regularize the parameter θ 0
     lambdaCostPart = (float(lambda_param) / (2 * m)) * np.sum(np.power(thetaZero, 2))
     lambdaGradPart = float(lambda_param) / m * thetaZero
@@ -66,20 +66,34 @@ def costFunctionReg(X, y, theta, lambda_param):
     return J, grad
 
 
-def costFunctionReg2(X, y, theta, lambda_param):
+#  samed as costFunctionReg, just param order and retrun value differences
+def costFunctionReg2(theta, X, y, lambda_param):
     m = len(y)
     J = 0
     grad = np.zeros(theta.shape)
     predictions = sigmoid(np.dot(X, theta))
     left = -np.dot(y.T, np.log(predictions))
     right = np.dot((1 - y.T), np.log(1 - predictions))
-    thetaZero = theta
+    thetaZero = theta.copy()
     thetaZero[0] = 0  # should not regularize the parameter θ 0
     lambdaCostPart = (float(lambda_param) / (2 * m)) * np.sum(np.power(thetaZero, 2))
-    # lambdaGradPart = float(lambda_param) / m * thetaZero
+    lambdaGradPart = float(lambda_param) / m * thetaZero
     J = (float(1) / m) * (left - right) + lambdaCostPart
-    # y.shape = (len(y), 1)  # convert to matrix
-    # predictions.shape = (len(predictions), 1)
-    # lambdaGradPart.shape = (len(lambdaGradPart), 1)
-    # grad = (float(1) / m) * np.dot(X.T, predictions - y) + lambdaGradPart
+    y.shape = (len(y), 1)  # convert to matrix
+    predictions.shape = (len(predictions), 1)
+    lambdaGradPart.shape = (len(lambdaGradPart), 1)
+    grad = (float(1) / m) * np.dot(X.T, predictions - y) + lambdaGradPart
     return J
+
+    # def gradientReg(theta, X, y, lambda_param):
+    #     m = len(y)
+    #     predictions = sigmoid(np.dot(X, theta))
+    #     thetaZero = theta.copy()
+    #     thetaZero[0] = 0  # should not regularize the parameter θ 0
+    #     lambdaCostPart = (float(lambda_param) / (2 * m)) * np.sum(np.power(thetaZero, 2))
+    #     lambdaGradPart = float(lambda_param) / m * thetaZero
+    #     y.shape = (len(y), 1)  # convert to matrix
+    #     predictions.shape = (len(predictions), 1)
+    #     lambdaGradPart.shape = (len(lambdaGradPart), 1)
+    #     grad = (float(1) / m) * np.dot(X.T, predictions - y) + lambdaGradPart
+    #     return grad
