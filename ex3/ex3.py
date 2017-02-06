@@ -74,6 +74,7 @@ import os
 import scipy.io
 
 from displayData import displayData
+from oneVsAll import oneVsAll
 
 input_layer_size = 400  # 20x20 Input Images of Digits
 num_labels = 10  # 10 labels, from 1 to 10
@@ -87,4 +88,10 @@ m, _ = X.shape
 rand_indices = np.random.permutation(m)
 sel = X[rand_indices[1:100], :]
 displayData(sel)
+
+print '\nTraining One-vs-All Logistic Regression...\n'
+
+lambda_param = 0.1
+all_theta = oneVsAll(X, y, num_labels, lambda_param)
+
 print 'done'
