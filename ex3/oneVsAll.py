@@ -85,8 +85,10 @@ from lrCostFunction import lrCostFunction
 
 def oneVsAll(X, y, num_labels, lambda_param):
     m, n = X.shape
-    all_theta = np.zeros(num_labels, n + 1)
+    all_theta = np.zeros((num_labels, n + 1))
     X = np.insert(X, 0, 1, axis=1)
-    initial_theta = np.zeros(n + 1, 1)
-    result_theta = fmin_bfgs(lambda t: lrCostFunction(t, X, y, lambda_param), initial_theta, maxiter=50)
-    print ""
+    initial_theta = np.zeros((n + 1, 1))
+    for c in range(num_labels):
+        theta = fmin_bfgs(lambda t: lrCostFunction(t, X, y == c, lambda_param), initial_theta, maxiter=50)
+        all_theta[c, :] = theta
+    return all_theta

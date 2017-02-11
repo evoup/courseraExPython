@@ -74,6 +74,7 @@ import os
 import scipy.io
 
 from displayData import displayData
+from predictOneVsAll import predictOneVsAll
 from oneVsAll import oneVsAll
 
 input_layer_size = 400  # 20x20 Input Images of Digits
@@ -93,5 +94,6 @@ print '\nTraining One-vs-All Logistic Regression...\n'
 
 lambda_param = 0.1
 all_theta = oneVsAll(X, y, num_labels, lambda_param)
-
+scipy.io.savemat(os.getcwd() + '/all_theta.mat', all_theta)
+pred = predictOneVsAll(all_theta, X)
 print 'done'
