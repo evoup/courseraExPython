@@ -47,8 +47,11 @@ import numpy as np
 
 def predictOneVsAll(all_theta, X):
     m, _ = X.shape
-    num_labels = len(all_theta)
     p = np.zeros((m, 1))
     X = np.insert(X, 0, 1, axis=1)
     all_preds = np.dot(all_theta, X.T)
-    print ""
+    res = all_preds.argmax(axis=0)
+    res = res.T
+    res.shape = (len(res), 1)
+    p = res
+    return p

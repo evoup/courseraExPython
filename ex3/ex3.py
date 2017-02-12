@@ -94,6 +94,12 @@ print '\nTraining One-vs-All Logistic Regression...\n'
 
 lambda_param = 0.1
 all_theta = oneVsAll(X, y, num_labels, lambda_param)
-scipy.io.savemat(os.getcwd() + '/all_theta.mat', all_theta)
+# fmin_bfgs is very slow for hundreds of  params
+# hint, write to a matrix and debug in another program
+# scipy.io.savemat(os.getcwd() + '/all_theta.mat', {'dat': all_theta})
+# res = scipy.io.loadmat(os.getcwd() + '/ex3data1.mat')  # training data stored in arrays X, y
+# X = res['X']
+# y = res['y']
 pred = predictOneVsAll(all_theta, X)
+print('Train Accuracy: %f\n', np.mean(pred == y) * float(100))
 print 'done'

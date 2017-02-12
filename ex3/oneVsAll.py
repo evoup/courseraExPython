@@ -88,7 +88,10 @@ def oneVsAll(X, y, num_labels, lambda_param):
     all_theta = np.zeros((num_labels, n + 1))
     X = np.insert(X, 0, 1, axis=1)
     initial_theta = np.zeros((n + 1, 1))
-    for c in range(num_labels):
+    for c in range(1, num_labels + 1):
         theta = fmin_bfgs(lambda t: lrCostFunction(t, X, y == c, lambda_param), initial_theta, maxiter=50)
-        all_theta[c, :] = theta
+        if c == 10:  # reorder by source sample
+            all_theta[0, :] = theta
+        else:
+            all_theta[c, :] = theta
     return all_theta
