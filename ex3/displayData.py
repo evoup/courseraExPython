@@ -79,7 +79,7 @@ def displayData(X):
         example_height = (n / example_width)
     else:  # if a only a single graphic
 
-        X.shape = (1, 400)
+        X.shape = (1, len(X))  # (1, 400)
         m = 1
         # n = X.shape
         example_width = 20
