@@ -73,9 +73,19 @@ def displayData(X):
       displayed array if requested."""
 
     # Compute rows, cols
-    m, n = X.shape
-    example_width = round(np.sqrt(n))
-    example_height = (n / example_width)
+    if len(X.shape) > 1:  # if is multiply cell graphic
+        m, n = X.shape
+        example_width = round(np.sqrt(n))
+        example_height = (n / example_width)
+    else:  # if a only a single graphic
+
+        X.shape = (1, 400)
+        m = 1
+        # n = X.shape
+        example_width = 20
+        example_height = 20
+    # example_width = round(np.sqrt(n))
+    # example_height = (n / example_width)
 
     # Compute number of items to display
     display_rows = np.floor(np.sqrt(m))
@@ -98,8 +108,8 @@ def displayData(X):
             max_val = np.max(np.abs(X[curr_ex, :]))
             rows = [pad + j * (example_height + pad) + x for x in np.arange(example_height + 1)]
             cols = [pad + i * (example_width + pad) + x for x in np.arange(example_width + 1)]
-            display_array[min(rows):max(rows), min(cols):max(cols)] = X[curr_ex, :].reshape(example_height,
-                                                                                            example_width) / max_val
+            reshapeMat = X[curr_ex, :].reshape(example_height, example_width)
+            display_array[min(rows):max(rows), min(cols):max(cols)] = reshapeMat / max_val
             curr_ex = curr_ex + 1
         if curr_ex > m:
             break

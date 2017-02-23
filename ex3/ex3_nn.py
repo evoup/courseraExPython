@@ -105,7 +105,7 @@ X = res['X']
 y = res['y']
 m, _ = X.shape
 rand_indices = np.random.permutation(m)
-sel = X[rand_indices[1:100], :]
+sel = X[rand_indices[0:100], :]
 displayData(sel)
 
 res = scipy.io.loadmat(os.getcwd() + '/ex3weights.mat')
@@ -115,5 +115,9 @@ Theta2 = res['Theta2']
 pred = predict(Theta1, Theta2, X)
 print('Train Accuracy: %f\n', np.mean(pred == y) * 100)
 
+rp = np.random.permutation(m) + 1  # represent 1-10 num
 
+for i in range(1, m):
+    print '\nDisplaying Example Image\n'
+    displayData(X[rp[i], :])
 print "done"
