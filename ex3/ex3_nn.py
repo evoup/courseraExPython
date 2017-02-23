@@ -113,4 +113,7 @@ Theta1 = res['Theta1']
 Theta2 = res['Theta2']
 
 pred = predict(Theta1, Theta2, X)
+print('Train Accuracy: %f\n', np.mean(pred == y) * 100)
+
+
 print "done"
