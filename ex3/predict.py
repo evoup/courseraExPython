@@ -57,7 +57,7 @@ def predict(Theta1, Theta2, X):
     num_labels = len(Theta2)
     p = np.zeros((m, 1))
     X = np.insert(X, 0, 1, axis=1)
-    for j in range(1, m):
+    for j in range(1, m + 1):
         z2 = sigmoid(np.dot(X[j - 1, :], Theta1.T))
         z2.shape = (len(z2), 1)
         z2 = np.insert(z2, 0, 1, axis=0)
@@ -65,14 +65,3 @@ def predict(Theta1, Theta2, X):
         res = pred.argmax(axis=1) + 1  # because py max index start from 0 so, 0 will be 1,9 will be 10
         p[j - 1] = res
     return p
-    # for j=1:m,
-    #
-    # 	%first layer propagation
-    # 	z2 = sigmoid(X(j,:) * Theta1');
-    #
-    # 	%bias to hidden layer
-    # 	z2 = [1 z2];
-    #
-    # 	%hidden layer propagation and getting max (candidate)
-    # 	[trash,p(j)] = max(sigmoid(z2 * Theta2'));
-    # end

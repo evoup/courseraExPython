@@ -113,11 +113,13 @@ Theta1 = res['Theta1']
 Theta2 = res['Theta2']
 
 pred = predict(Theta1, Theta2, X)
-print('Train Accuracy: %f\n', np.mean(pred == y) * 100)
+print 'Train Accuracy: %f\n', np.mean(pred == y) * 100
 
 rp = np.random.permutation(m) + 1  # represent 1-10 num
 
 for i in range(1, m):
-    print '\nDisplaying Example Image\n'
+    print 'Displaying Example Image\n'
     displayData(X[rp[i], :])
+    pred = predict(Theta1, Theta2, X[rp[i], :].reshape(1, 400))
+    print 'Neural Network Prediction: %d (digit %d)\n' % (pred, np.mod(pred, 10))
 print "done"
