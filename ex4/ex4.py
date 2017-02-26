@@ -233,3 +233,25 @@
 # fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == y)) * 100);
 #
 #
+import numpy as np
+import scipy.io
+import os
+
+from displayData import displayData
+
+input_layer_size = 400  # 20x20 Input Images of Digits
+hidden_layer_size = 25  # 25 hidden units
+num_labels = 10  # 10 labels, from 1 to 10
+# (note that we have mapped "0" to label 10)
+
+# Load Training Data
+print 'Loading and Visualizing Data ...\n'
+res = scipy.io.loadmat(os.getcwd() + '/ex4data1.mat')  # training data stored in arrays X, y
+X = res['X']
+y = res['y']
+m, _ = X.shape
+rand_indices = np.random.permutation(m)
+sel = X[rand_indices[0:100], :]
+displayData(sel)
+
+print "done"
