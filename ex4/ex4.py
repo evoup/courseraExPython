@@ -253,5 +253,16 @@ m, _ = X.shape
 rand_indices = np.random.permutation(m)
 sel = X[rand_indices[0:100], :]
 displayData(sel)
+print 'Loading Saved Neural Network Parameters ...\n'
+# Load the weights into variables Theta1 and Theta2
+res = scipy.io.loadmat(os.getcwd() + '/ex4weights.mat')
+Theta1 = res['Theta1']
+Theta2 = res['Theta2']
+
+# Unroll parameters
+Theta1List = Theta1.tolist()
+Theta2List = Theta2.tolist()
+nn_params = Theta1List + Theta2List
+
 
 print "done"
