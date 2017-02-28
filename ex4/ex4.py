@@ -238,9 +238,10 @@ import scipy.io
 import os
 
 from displayData import displayData
+from nnCostFunction import nnCostFunction
 
 input_layer_size = 400  # 20x20 Input Images of Digits
-hidden_layer_size = 25  # 25 hidden units
+hidden_layer_size = 25  # 25 hidden units, not means lay size, but units size in the lay
 num_labels = 10  # 10 labels, from 1 to 10
 # (note that we have mapped "0" to label 10)
 
@@ -260,9 +261,13 @@ Theta1 = res['Theta1']
 Theta2 = res['Theta2']
 
 # Unroll parameters
-Theta1List = Theta1.tolist()
-Theta2List = Theta2.tolist()
-nn_params = Theta1List + Theta2List
+rolledTheta1 = Theta1.reshape(hidden_layer_size * (input_layer_size + 1), 1)
+rolledTheta2 = Theta2.reshape(num_labels * (hidden_layer_size + 1), 1)
+nn_params = np.array(rolledTheta1.tolist() + rolledTheta2.tolist())
 
+print 'Feedforward Using Neural Network ...\n'
+# Weight regularization parameter (we set this to 0 here).
+lambda_param = 0
 
+J = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X, y, lambda_param)
 print "done"
