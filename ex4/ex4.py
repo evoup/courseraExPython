@@ -234,8 +234,8 @@
 #
 #
 import numpy as np
-import scipy.io
 import os
+import scipy.io
 
 from displayData import displayData
 from nnCostFunction import nnCostFunction
@@ -269,5 +269,14 @@ print 'Feedforward Using Neural Network ...\n'
 # Weight regularization parameter (we set this to 0 here).
 lambda_param = 0
 
-J = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X, y, lambda_param)
+grad, J = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X, y, lambda_param)
+print 'Cost at parameters (loaded from ex4weights): %f \n(this value should be about 0.287629)\n' % J
+
+print 'Checking Cost Function (w/ Regularization) ... \n'
+# Weight regularization parameter (we set this to 1 here).
+lambda_param = 1
+grad, J = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X, y, lambda_param)
+print 'Cost at parameters (loaded from ex4weights): %f (this value should be about 0.383770)\n' % J
+
+
 print "done"

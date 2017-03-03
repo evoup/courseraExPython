@@ -183,14 +183,14 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X
     for i in range(1, m + 1):
             yk[y[i - 1] - 1, i - 1] = 1
     # follow the form
-    J = (1/m) * np.sum(np.sum(np.multiply((-yk), np.log(h_theta)) - np.multiply((1 - yk), np.log(1 - h_theta))))
+    J = (float(1)/m) * np.sum(np.sum(np.multiply((-yk), np.log(h_theta)) - np.multiply((1 - yk), np.log(1 - h_theta))))
     # Note that you should not be regularizing the terms that correspond to the bias.
     # For the matrices Theta1 and Theta2, this corresponds to the first column of each matrix.
     _, col = Theta1.shape
     t1 = Theta1[:, 1:col]
     t2 = Theta2[:, 1:col]
     # regularization formula
-    Reg = lambda_param * (np.sum(np.sum(np.power(t1, 2))) + np.sum(np.sum(np.power(t2, 2)))) / (2 * m)
+    Reg = lambda_param * (np.sum(np.sum(np.power(t1, 2))) + np.sum(np.sum(np.power(t2, 2)))) / (float(2) * m)
     # cost function + reg
     J += Reg
     # -------------------------------------------------------------
