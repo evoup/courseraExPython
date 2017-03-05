@@ -237,8 +237,11 @@ import numpy as np
 import os
 import scipy.io
 
+from checkNNGradients import checkNNGradients
 from displayData import displayData
 from nnCostFunction import nnCostFunction
+from randInitializeWeights import randInitializeWeights
+from sigmoidGradient import sigmoidGradient
 
 input_layer_size = 400  # 20x20 Input Images of Digits
 hidden_layer_size = 25  # 25 hidden units, not means lay size, but units size in the lay
@@ -278,5 +281,21 @@ lambda_param = 1
 grad, J = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X, y, lambda_param)
 print 'Cost at parameters (loaded from ex4weights): %f (this value should be about 0.383770)\n' % J
 
+print 'Evaluating sigmoid gradient...\n'
+g = sigmoidGradient(np.array([1, -0.5, 0, 0.5, 1]))
+print 'Sigmoid gradient evaluated at [1 -0.5 0 0.5 1]:\n'
+print g
+
+print 'Initializing Neural Network Parameters ...\n'
+initial_Theta1 = randInitializeWeights(input_layer_size, hidden_layer_size)
+initial_Theta2 = randInitializeWeights(hidden_layer_size, num_labels)
+# Unroll parameters
+initial_nn_params = np.array(
+    initial_Theta1.ravel().reshape(len(initial_Theta1.ravel()), 1).tolist() +
+    initial_Theta2.ravel().reshape(len(initial_Theta2.ravel()), 1).tolist()
+)
+print('Checking Backpropagation... \n')
+# Check gradients by running checkNNGradients
+checkNNGradients(lambda_param)
 
 print "done"
