@@ -220,4 +220,5 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X
         T1g = Theta1_grad.ravel().reshape(len(Theta1_grad.ravel()), 1)
         T2g = Theta2_grad.ravel().reshape(len(Theta2_grad.ravel()), 1)
         grad = np.array([[T1g], [T2g]])
-    return grad, J
+    return J, grad
+    #return J

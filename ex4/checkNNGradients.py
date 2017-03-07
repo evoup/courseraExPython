@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # function checkNNGradients(lambda)
 # %CHECKNNGRADIENTS Creates a small neural network to check the
 # %backpropagation gradients
@@ -52,7 +53,9 @@
 # end
 import numpy as np
 
+from computeNumericalGradient import computeNumericalGradient
 from debugInitializeWeights import debugInitializeWeights
+from nnCostFunction import nnCostFunction
 
 
 def checkNNGradients(lambda_param):
@@ -68,7 +71,16 @@ def checkNNGradients(lambda_param):
     # Reusing debugInitializeWeights to generate X
     X = debugInitializeWeights(m, input_layer_size - 1)
     y = 1 + np.mod(range(1, m + 1), num_labels).T
+    y.shape = (len(y), 1)
     # Unroll parameters
     nn_params = np.array(Theta1.ravel().tolist() + Theta2.ravel().tolist())
+    nn_params.shape = (len(nn_params), 1)
+    # Short hand for cost function
+    costFunc = lambda p: nnCostFunction(p, input_layer_size, hidden_layer_size,
+                     num_labels, X, y, lambda_param)
+    cost, grad = costFunc(nn_params)
+    numgrad = computeNumericalGradient(costFunc, nn_params)
+
+    #theta = fmin_bfgs(lambda t: nnCostFunction(t, input_layer_size, hidden_layer_size, num_labels, X, y, lambda_param), nn_params, maxiter=50)
 
     print "test"

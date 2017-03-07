@@ -238,7 +238,6 @@ import os
 import scipy.io
 
 from checkNNGradients import checkNNGradients
-from displayData import displayData
 from nnCostFunction import nnCostFunction
 from randInitializeWeights import randInitializeWeights
 from sigmoidGradient import sigmoidGradient
@@ -256,7 +255,7 @@ y = res['y']
 m, _ = X.shape
 rand_indices = np.random.permutation(m)
 sel = X[rand_indices[0:100], :]
-displayData(sel)
+# displayData(sel)
 print 'Loading Saved Neural Network Parameters ...\n'
 # Load the weights into variables Theta1 and Theta2
 res = scipy.io.loadmat(os.getcwd() + '/ex4weights.mat')
@@ -272,13 +271,13 @@ print 'Feedforward Using Neural Network ...\n'
 # Weight regularization parameter (we set this to 0 here).
 lambda_param = 0
 
-grad, J = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X, y, lambda_param)
+J, grad = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X, y, lambda_param)
 print 'Cost at parameters (loaded from ex4weights): %f \n(this value should be about 0.287629)\n' % J
 
 print 'Checking Cost Function (w/ Regularization) ... \n'
 # Weight regularization parameter (we set this to 1 here).
 lambda_param = 1
-grad, J = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X, y, lambda_param)
+J, grad = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X, y, lambda_param)
 print 'Cost at parameters (loaded from ex4weights): %f (this value should be about 0.383770)\n' % J
 
 print 'Evaluating sigmoid gradient...\n'
@@ -294,8 +293,19 @@ initial_nn_params = np.array(
     initial_Theta1.ravel().reshape(len(initial_Theta1.ravel()), 1).tolist() +
     initial_Theta2.ravel().reshape(len(initial_Theta2.ravel()), 1).tolist()
 )
-print('Checking Backpropagation... \n')
+print 'Checking Backpropagation... \n'
 # Check gradients by running checkNNGradients
-checkNNGradients(lambda_param)
+checkNNGradients(None)
+
+# # Check gradients by running checkNNGradients
+# print'Checking Backpropagation (w/ Regularization) ... \n'
+# lambda_param = 3
+# checkNNGradients(lambda_param)
+#
+# # Also output the costFunction debugging values
+# debug_J = nnCostFunction(nn_params, input_layer_size,
+#                           hidden_layer_size, num_labels, X, y, lambda_param)
+# print 'Cost at (fixed) debugging parameters (w/ lambda = 10): %f ' \
+#       '\n(this value should be about 0.576051)\n\n' % debug_J
 
 print "done"
