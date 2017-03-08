@@ -60,11 +60,8 @@
 # end
 
 import numpy as np
-# from matplotlib import use
-# use('TkAgg')
-import matplotlib.pyplot as plt
 
-from show import show
+import matplotlib.pyplot as plt
 
 
 def displayData(X):
