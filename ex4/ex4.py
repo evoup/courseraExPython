@@ -298,9 +298,9 @@ print 'Checking Backpropagation... \n'
 checkNNGradients(None)
 
 # # Check gradients by running checkNNGradients
-# print'Checking Backpropagation (w/ Regularization) ... \n'
-# lambda_param = 3
-# checkNNGradients(lambda_param)
+print'Checking Backpropagation (w/ Regularization) ... \n'
+lambda_param = 3
+checkNNGradients(lambda_param)
 #
 # # Also output the costFunction debugging values
 # debug_J = nnCostFunction(nn_params, input_layer_size,

@@ -166,7 +166,7 @@ from sigmoidGradient import sigmoidGradient
 
 
 def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X, y, lambda_param):
-    global grad
+    #global grad
     Theta1 = nn_params[0:hidden_layer_size * (input_layer_size + 1)].reshape(hidden_layer_size, input_layer_size + 1)
     Theta2 = nn_params[hidden_layer_size * (input_layer_size + 1):].reshape(num_labels, hidden_layer_size + 1)
     m, _ = X.shape
@@ -217,8 +217,5 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X
         Theta2_grad[:, 0] = np.divide(Theta2_grad[:, 0], m)
         Theta2_grad[:, 1:] = np.divide(Theta2_grad[:, 1:], m) + (np.dot(lambda_param / m, Theta2[:, 1:]))
         # Unroll gradients
-        T1g = Theta1_grad.ravel().reshape(len(Theta1_grad.ravel()), 1)
-        T2g = Theta2_grad.ravel().reshape(len(Theta2_grad.ravel()), 1)
-        grad = np.array([[T1g], [T2g]])
+        grad = np.array(Theta1_grad.ravel().tolist() + Theta2_grad.ravel().tolist())
     return J, grad
-    #return J
