@@ -49,12 +49,11 @@
 # end
 import numpy as np
 
-import matplotlib
+import matplotlib.pyplot as plt
 from matplotlib import cm
 
 from mapFeature import mapFeature
 from plotData import plotData
-import matplotlib.pyplot as plt
 
 
 def plotDecisionBoundary(theta, X, y):
@@ -63,7 +62,7 @@ def plotDecisionBoundary(theta, X, y):
     if col <= 3:
         plotData(X[:, (1, 2)], y, False)
         np.max(X[:, 1])
-        plt.hold(True)
+        #plt.hold(True)
         plot_x = [np.min(X[:, 1]) - 2, np.max(X[:, 1]) + 2]
         plot_y = np.dot((-1 / theta[2]), (np.dot(theta[1],  plot_x) + theta[0]))
         plt.plot(plot_x, plot_y, color='blue')

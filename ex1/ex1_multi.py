@@ -30,12 +30,12 @@
 # %% ================ Part 1: Feature Normalization ================
 import numpy as np
 import os
-import matplotlib.pyplot as plt
-from pandas.compat import scipy
 
-from normalEqn import normalEqn
+import matplotlib.pyplot as plt
+
 from featureNormalize import featureNormalize
 from gradientDescentMulti import gradientDescentMulti
+from normalEqn import normalEqn
 
 print('Loading data ...\n')
 
