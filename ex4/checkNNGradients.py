@@ -73,14 +73,22 @@ def checkNNGradients(lambda_param):
     y = 1 + np.mod(range(1, m + 1), num_labels).T
     y.shape = (len(y), 1)
     # Unroll parameters
-    nn_params = np.array(Theta1.ravel().tolist() + Theta2.ravel().tolist())
-    nn_params.shape = (len(nn_params), 1)
+    nn_params = np.array(Theta1.flatten(order='f').tolist() + Theta2.flatten(order='f').tolist())
+    # nn_params = nn_params.reshape(len(nn_params), 1, order='F')
     # Short hand for cost function
     costFunc = lambda p: nnCostFunction(p, input_layer_size, hidden_layer_size,
                      num_labels, X, y, lambda_param)
     cost, grad = costFunc(nn_params)
     numgrad = computeNumericalGradient(costFunc, nn_params)
-
-    #theta = fmin_bfgs(lambda t: nnCostFunction(t, input_layer_size, hidden_layer_size, num_labels, X, y, lambda_param), nn_params, maxiter=50)
-
-    print "test"
+    # Visually examine the two gradient computations.  The two columns
+    # you get should be very similar.
+    #disp([numgrad grad]);
+    print 'The above two columns you get should be very similar.' \
+          '(Left-Your Numerical Gradient, Right-Analytical Gradient)\n\n'
+    # Evaluate the norm of the difference between two solutions.
+    # If you have a correct implementation, and assuming you used EPSILON = 0.0001
+    # in computeNumericalGradient.m, then diff below should be less than 1e-9
+    diff = np.linalg.norm(numgrad - grad) / np.linalg.norm(numgrad + grad)
+    print 'If your backpropagation implementation is correct, then \n' \
+          'the relative difference will be small (less than 1e-9). \n\n' \
+          'Relative Difference: %g\n' % diff

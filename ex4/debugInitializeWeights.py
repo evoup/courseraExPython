@@ -29,5 +29,5 @@ def debugInitializeWeights(fan_out, fan_in):
     # Initialize W using "sin", this ensures that W is always of the same
     # values and will be useful for debugging
     r, c = W.shape
-    W = np.sin(range(1, r * c + 1)).reshape(r, c) / 10
+    W = np.sin(range(1, r * c + 1)).reshape(r, c, order='F') / 10
     return W

@@ -301,11 +301,10 @@ checkNNGradients(None)
 print'Checking Backpropagation (w/ Regularization) ... \n'
 lambda_param = 3
 checkNNGradients(lambda_param)
-#
-# # Also output the costFunction debugging values
-# debug_J = nnCostFunction(nn_params, input_layer_size,
-#                           hidden_layer_size, num_labels, X, y, lambda_param)
-# print 'Cost at (fixed) debugging parameters (w/ lambda = 10): %f ' \
-#       '\n(this value should be about 0.576051)\n\n' % debug_J
+
+# Also output the costFunction debugging values
+debug_J = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X, y, lambda_param)
+print 'Cost at (fixed) debugging parameters (w/ lambda = 10): %f ' \
+       '\n(this value should be about 0.576051)\n\n' % debug_J
 
 print "done"
