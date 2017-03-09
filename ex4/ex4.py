@@ -263,8 +263,8 @@ Theta1 = res['Theta1']
 Theta2 = res['Theta2']
 
 # Unroll parameters
-rolledTheta1 = Theta1.reshape(hidden_layer_size * (input_layer_size + 1), 1)
-rolledTheta2 = Theta2.reshape(num_labels * (hidden_layer_size + 1), 1)
+rolledTheta1 = Theta1.reshape(hidden_layer_size * (input_layer_size + 1), 1, order='f')
+rolledTheta2 = Theta2.reshape(num_labels * (hidden_layer_size + 1), 1, order='f')
 nn_params = np.array(rolledTheta1.tolist() + rolledTheta2.tolist())
 
 print 'Feedforward Using Neural Network ...\n'
@@ -278,7 +278,7 @@ print 'Checking Cost Function (w/ Regularization) ... \n'
 # Weight regularization parameter (we set this to 1 here).
 lambda_param = 1
 J, grad = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X, y, lambda_param)
-print 'Cost at parameters (loaded from ex4weights): %f (this value should be about 0.383770)\n' % J
+print 'Cost at parameters (loaded from ex4weights): %f \n(this value should be about 0.383770)\n' % J
 
 print 'Evaluating sigmoid gradient...\n'
 g = sigmoidGradient(np.array([1, -0.5, 0, 0.5, 1]))

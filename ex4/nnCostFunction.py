@@ -167,8 +167,8 @@ from sigmoidGradient import sigmoidGradient
 
 def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X, y, lambda_param):
     #global grad
-    Theta1 = nn_params[0:hidden_layer_size * (input_layer_size + 1)].reshape(hidden_layer_size, input_layer_size + 1)
-    Theta2 = nn_params[hidden_layer_size * (input_layer_size + 1):].reshape(num_labels, hidden_layer_size + 1)
+    Theta1 = nn_params[0:hidden_layer_size * (input_layer_size + 1)].reshape(hidden_layer_size, input_layer_size + 1, order='f')
+    Theta2 = nn_params[hidden_layer_size * (input_layer_size + 1):].reshape(num_labels, hidden_layer_size + 1, order='f')
     m, _ = X.shape
     J = 0
     Theta1_grad = np.zeros(Theta1.shape)
@@ -186,15 +186,17 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X
     J = (float(1)/m) * np.sum(np.sum(np.multiply((-yk), np.log(h_theta)) - np.multiply((1 - yk), np.log(1 - h_theta))))
     # Note that you should not be regularizing the terms that correspond to the bias.
     # For the matrices Theta1 and Theta2, this corresponds to the first column of each matrix.
-    _, col = Theta1.shape
-    t1 = Theta1[:, 1:col]
-    t2 = Theta2[:, 1:col]
+    _, col1 = Theta1.shape
+    _, col2 = Theta2.shape
+    t1 = Theta1[:, 1:col1]
+    t2 = Theta2[:, 1:col2]
     # regularization formula
     Reg = lambda_param * (np.sum(np.sum(np.power(t1, 2))) + np.sum(np.sum(np.power(t2, 2)))) / (float(2) * m)
     # cost function + reg
     J += Reg
     # -------------------------------------------------------------
     # Backprop
+    _, col = X.shape
     for t in range(1, m + 1):
         a1 = X[t - 1, :].reshape(1, col)  # X already have bias, shape is (1, 401)
         z2 = np.dot(Theta1, a1.T)
