@@ -213,11 +213,11 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X
         Theta2_grad = Theta2_grad + np.dot(delta_3, a2.T)
         Theta1_grad = Theta1_grad + np.dot(delta_2, a1)  # I don't know why a1 doesn't need to be transpost (brute force try)
 
-        # Regularization (here you go)
-        Theta1_grad[:, 0] = np.divide(Theta1_grad[:, 0], m)
-        Theta1_grad[:, 1:] = np.divide(Theta1_grad[:, 1:], m) + (np.dot(lambda_param / m, Theta1[:, 1:]))
-        Theta2_grad[:, 0] = np.divide(Theta2_grad[:, 0], m)
-        Theta2_grad[:, 1:] = np.divide(Theta2_grad[:, 1:], m) + (np.dot(lambda_param / m, Theta2[:, 1:]))
-        # Unroll gradients
-        grad = np.array(Theta1_grad.ravel().tolist() + Theta2_grad.ravel().tolist())
+    # Regularization (here you go)
+    Theta1_grad[:, 0] = np.divide(Theta1_grad[:, 0], m)
+    Theta1_grad[:, 1:] = np.divide(Theta1_grad[:, 1:], m) + (np.dot(lambda_param / m, Theta1[:, 1:]))
+    Theta2_grad[:, 0] = np.divide(Theta2_grad[:, 0], m)
+    Theta2_grad[:, 1:] = np.divide(Theta2_grad[:, 1:], m) + (np.dot(lambda_param / m, Theta2[:, 1:]))
+    # Unroll gradients
+    grad = np.array(Theta1_grad.flatten(order='f').tolist() + Theta2_grad.flatten(order='f').tolist())
     return J, grad
