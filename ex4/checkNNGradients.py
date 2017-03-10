@@ -88,7 +88,8 @@ def checkNNGradients(lambda_param):
     # Evaluate the norm of the difference between two solutions.
     # If you have a correct implementation, and assuming you used EPSILON = 0.0001
     # in computeNumericalGradient.m, then diff below should be less than 1e-9
-    diff = np.linalg.norm(numgrad - grad) / np.linalg.norm(numgrad + grad)
+    diff = np.linalg.norm(numgrad - grad.reshape(len(grad.flatten()), 1)) / \
+           np.linalg.norm(numgrad + grad.reshape(len(grad.flatten()), 1))
     print 'If your backpropagation implementation is correct, then \n' \
           'the relative difference will be small (less than 1e-9). \n\n' \
           'Relative Difference: %g\n' % diff

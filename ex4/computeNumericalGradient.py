@@ -33,13 +33,15 @@ import numpy as np
 
 def computeNumericalGradient(J, theta):
     numgrad = np.zeros((theta.shape))
+    numgrad = numgrad.reshape(len(numgrad), 1)
     perturb = np.zeros((theta.shape))
+    perturb = perturb.reshape(len(perturb), 1)
     e = 1e-4
     for p in range(1, len(theta.ravel()) + 1):
         # Set perturbation vector
         perturb[p - 1] = e
-        loss1, _ = J(theta - perturb)
-        loss2, _ = J(theta + perturb)
+        loss1, _ = J(theta.reshape(len(theta), 1) - perturb)
+        loss2, _ = J(theta.reshape(len(theta), 1) + perturb)
         # Compute Numerical Gradient
         numgrad[p - 1] = (loss2 - loss1) / (2 * e)
         perturb[p - 1] = 0
