@@ -83,13 +83,15 @@ def checkNNGradients(lambda_param):
     # Visually examine the two gradient computations.  The two columns
     # you get should be very similar.
     #disp([numgrad grad]);
+    grad = grad.reshape(len(grad.flatten()), 1)
+    print numgrad
+    print grad
     print 'The above two columns you get should be very similar.' \
           '(Left-Your Numerical Gradient, Right-Analytical Gradient)\n\n'
     # Evaluate the norm of the difference between two solutions.
     # If you have a correct implementation, and assuming you used EPSILON = 0.0001
     # in computeNumericalGradient.m, then diff below should be less than 1e-9
-    diff = np.linalg.norm(numgrad - grad.reshape(len(grad.flatten()), 1)) / \
-           np.linalg.norm(numgrad + grad.reshape(len(grad.flatten()), 1))
+    diff = np.linalg.norm(numgrad - grad) / np.linalg.norm(numgrad + grad)
     print 'If your backpropagation implementation is correct, then \n' \
           'the relative difference will be small (less than 1e-9). \n\n' \
           'Relative Difference: %g\n' % diff

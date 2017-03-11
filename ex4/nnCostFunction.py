@@ -215,9 +215,9 @@ def nnCostFunction(nn_params, input_layer_size, hidden_layer_size, num_labels, X
 
     # Regularization (here you go)
     Theta1_grad[:, 0] = np.divide(Theta1_grad[:, 0], m)
-    Theta1_grad[:, 1:] = np.divide(Theta1_grad[:, 1:], m) + (np.dot(lambda_param / m, Theta1[:, 1:]))
+    Theta1_grad[:, 1:] = np.divide(Theta1_grad[:, 1:], m) + ((lambda_param / m) * Theta1[:, 1:])
     Theta2_grad[:, 0] = np.divide(Theta2_grad[:, 0], m)
-    Theta2_grad[:, 1:] = np.divide(Theta2_grad[:, 1:], m) + (np.dot(lambda_param / m, Theta2[:, 1:]))
+    Theta2_grad[:, 1:] = np.divide(Theta2_grad[:, 1:], m) + ((lambda_param / m) * Theta2[:, 1:])
     # Unroll gradients
     grad = np.array(Theta1_grad.flatten(order='f').tolist() + Theta2_grad.flatten(order='f').tolist())
     return J, grad

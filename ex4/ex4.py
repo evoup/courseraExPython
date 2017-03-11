@@ -297,6 +297,8 @@ print 'Checking Backpropagation... \n'
 # Check gradients by running checkNNGradients
 checkNNGradients(None)
 
+print "--------------------------"
+
 # # Check gradients by running checkNNGradients
 print'Checking Backpropagation (w/ Regularization) ... \n'
 lambda_param = 3
