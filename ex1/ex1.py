@@ -77,7 +77,7 @@ matplotlib.pyplot.scatter(X, y)
 # raw_input('Program paused. Press enter to continue.\n');
 ##%% =================== Part 3: Gradient descent ===================
 # convert to column vec
-X.shape = (97, 1)
+X.shape = (m, 1) #97
 
 ##X = [ones(m, 1), data(:,1)]; % Add a column of ones to x
 
@@ -125,7 +125,7 @@ print ("%.2f %.2f" % (newTheta[0][0], newTheta[1][0]))
 # matplotlib.pyplot.hold(True)
 X = arr[0]
 
-X.shape = (97, 1)
+X.shape = (m, 1)
 X1 = np.insert(X, 0, 1, axis=1)
 
 matplotlib.pyplot.plot(X, np.dot(X1, newTheta), color='blue')
